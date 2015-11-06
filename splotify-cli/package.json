@@ -1,0 +1,9 @@
+{
+  "name": "splotify-cli",
+  "version": "0.0.1",
+  "description": "splotify-cli",
+  "main": "app.js",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}

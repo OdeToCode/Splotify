@@ -17,7 +17,7 @@
     "dnxcore50": { }
   },
   "scripts": {
-
+    "postrestore": ["npm install", "jspm install"]
   },
 
   "exclude": [
