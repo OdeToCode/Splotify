@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Splotify", "src\Splotify\Splotify.xproj", "{53F3DF08-65AD-4201-9A14-6056405A4D6E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "node", "node", "{C931262A-1D51-4ED0-9440-A406C5567F3D}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "splotify-cli", "splotify-cli\splotify-cli.njsproj", "{D3A591CD-985A-43A0-8DF5-49CE3E459545}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +27,16 @@ Global
 		{53F3DF08-65AD-4201-9A14-6056405A4D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53F3DF08-65AD-4201-9A14-6056405A4D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53F3DF08-65AD-4201-9A14-6056405A4D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A591CD-985A-43A0-8DF5-49CE3E459545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A591CD-985A-43A0-8DF5-49CE3E459545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A591CD-985A-43A0-8DF5-49CE3E459545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A591CD-985A-43A0-8DF5-49CE3E459545}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{53F3DF08-65AD-4201-9A14-6056405A4D6E} = {68215552-CC7D-4A23-ADCD-E8CA5ADDB59B}
+		{D3A591CD-985A-43A0-8DF5-49CE3E459545} = {C931262A-1D51-4ED0-9440-A406C5567F3D}
 	EndGlobalSection
 EndGlobal

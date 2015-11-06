@@ -1,21 +1,13 @@
 ﻿import * as commander from "commander";
+import {Playlist} from "./playlists";
+import {User} from "./login";
 
 class App {
-
-    _args: string[];
-    _commander: commander.ICommand;    
 
     constructor(args: string[]) {
         this._args = args;
         this._commander = commander;
-
-        this._commander
-            .version("0.0.1");
-
-        this._commander
-            .command("playlists [profile]")
-            .action(this.playlists.bind(this));
-            
+        this._setupCommander();        
     }
 
     run() {
@@ -23,8 +15,30 @@ class App {
     }
 
     playlists(profile) {
-        console.log(profile);
+
+        let user = new User();
+        user.login()
+            .then(() => {
+                let playlist = new Playlist(profile);
+                playlist.showPlaylists();
+            })
+            .catch(error => {
+                console.log(error);
+            });      
     }
+
+    _setupCommander() {
+        this._commander
+            .version("0.0.1");
+
+        this._commander
+            .command("playlists [profile]")
+            .action(this.playlists.bind(this));    
+    }
+
+    _args: string[];
+    _commander: commander.ICommand;    
+
 }
 
 var app = new App(process.argv);
