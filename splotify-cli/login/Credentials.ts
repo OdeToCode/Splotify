@@ -4,7 +4,7 @@ let loginQuestions: inquirer.Questions = [
     {
         type: "input",
         name: "username",
-        message: "Spotify email:"
+        message: "Spotify name:"
     },
     {
         type: "password",
@@ -24,6 +24,14 @@ export class Credentials {
     toBase64(): string {
         let buffer = new Buffer(`${this.username}:${this.password}`,"utf-8");
         return buffer.toString("base64");
+    }
+
+    static fromEnvironment(): Promise<Credentials> {
+        let completion = new Promise<Credentials>((resolve, reject) => {
+            // todo: grab from env vars...
+        });
+
+        return completion;
     }
 
     static prompt(): Promise<Credentials> {

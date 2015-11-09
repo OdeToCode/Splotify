@@ -18,7 +18,7 @@ var App = (function () {
             playlist.showPlaylists();
         })
             .catch(function (error) {
-            console.log(error);
+            console.log(error.message);
         });
     };
     App.prototype._setupCommander = function () {

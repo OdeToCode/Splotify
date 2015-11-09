@@ -3,7 +3,7 @@ var loginQuestions = [
     {
         type: "input",
         name: "username",
-        message: "Spotify email:"
+        message: "Spotify name:"
     },
     {
         type: "password",
@@ -19,6 +19,12 @@ var Credentials = (function () {
     Credentials.prototype.toBase64 = function () {
         var buffer = new Buffer(this.username + ":" + this.password, "utf-8");
         return buffer.toString("base64");
+    };
+    Credentials.fromEnvironment = function () {
+        var completion = new Promise(function (resolve, reject) {
+            // todo: grab from env vars...
+        });
+        return completion;
     };
     Credentials.prompt = function () {
         var completion = new Promise(function (resolve, reject) {
