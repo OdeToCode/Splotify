@@ -1,5 +1,8 @@
 ﻿import * as inquirer from "inquirer";
 
+const id = "SPOTIFYID";
+const secret = "SPOTIFYSECRET";
+
 let loginQuestions: inquirer.Questions = [
     {
         type: "input",
@@ -27,11 +30,15 @@ export class Credentials {
     }
 
     static fromEnvironment(): Promise<Credentials> {
-        let completion = new Promise<Credentials>((resolve, reject) => {
-            // todo: grab from env vars...
-        });
+        if (!process.env[id] || !process.env[secret]) {
+            return Credentials.prompt();
+        }
 
-        return completion;
+        let result = new Credentials(
+            process.env[id],
+            process.env[secret]
+        );
+        return Promise.resolve(result);
     }
 
     static prompt(): Promise<Credentials> {

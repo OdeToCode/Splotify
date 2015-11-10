@@ -1,4 +1,6 @@
 var inquirer = require("inquirer");
+var id = "SPOTIFYID";
+var secret = "SPOTIFYSECRET";
 var loginQuestions = [
     {
         type: "input",
@@ -21,10 +23,11 @@ var Credentials = (function () {
         return buffer.toString("base64");
     };
     Credentials.fromEnvironment = function () {
-        var completion = new Promise(function (resolve, reject) {
-            // todo: grab from env vars...
-        });
-        return completion;
+        if (!process.env[id] || !process.env[secret]) {
+            return Credentials.prompt();
+        }
+        var result = new Credentials(process.env[id], process.env[secret]);
+        return Promise.resolve(result);
     };
     Credentials.prompt = function () {
         var completion = new Promise(function (resolve, reject) {
