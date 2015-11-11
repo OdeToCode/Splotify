@@ -7,12 +7,12 @@ let loginQuestions: inquirer.Questions = [
     {
         type: "input",
         name: "username",
-        message: "Spotify name:"
+        message: "App Id:"
     },
     {
         type: "password",
         name: "password",
-        message: "Password:"
+        message: "App secret:"
     }
 ];
 
