@@ -14,9 +14,29 @@ var SpotifyServer = (function () {
             json: true
         };
         return request(options)
-            .then(function (result) {
-            // name, href
-        });
+            .then(function (result) { return result.items.map(function (r) { return ({
+            id: r.id,
+            name: r.name,
+            href: r.tracks.href,
+            user: username
+        }); }); });
+    };
+    SpotifyServer.prototype.getTracksOnPlaylist = function (name, href) {
+        var options = {
+            method: "GET",
+            uri: href,
+            headers: {
+                Authorization: this._authHeader
+            },
+            json: true
+        };
+        return request(options)
+            .then(function (result) { return result.items.map(function (item) { return ({
+            added: new Date(item.added_at),
+            track: item.track.name,
+            album: item.track.album.name,
+            list: name
+        }); }); });
     };
     SpotifyServer.prototype.getToken = function (basicCredentials) {
         var _this = this;
@@ -34,9 +54,6 @@ var SpotifyServer = (function () {
         return request(options)
             .then(function (result) {
             console.log("Logged in");
-            for (var p in result) {
-                console.log(p + ":" + result[p]);
-            }
             _this._authHeader = "Bearer " + result.access_token;
             return result;
         }, function (error) {

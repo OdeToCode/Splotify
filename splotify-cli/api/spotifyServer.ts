@@ -16,9 +16,32 @@ class SpotifyServer {
         };
 
         return request(options)
-            .then(result => {
-                // name, href
-            });
+            .then(result => result.items.map(r => ({
+                id: r.id,
+                name: r.name,
+                href: r.tracks.href,
+                user: username
+            })));
+            
+    }
+
+    getTracksOnPlaylist(name: string, href: string) {
+        let options = {
+            method: "GET",
+            uri: href,
+            headers: {
+                Authorization: this._authHeader
+            },
+            json: true
+        };
+
+        return request(options)
+            .then(result => result.items.map(item => ({
+                    added: new Date(item.added_at),
+                    track: item.track.name,
+                    album: item.track.album.name,
+                    list: name
+                })));
     }
 
     getToken(basicCredentials: string) : Promise<string> {
@@ -36,10 +59,7 @@ class SpotifyServer {
 
         return request(options)
             .then(result => {
-                console.log("Logged in");
-                for (let p in result) {
-                    console.log(`${p}:${result[p]}`);
-                }
+                console.log("Logged in");               
                 this._authHeader = `Bearer ${result.access_token}`;
                 return result;
             }, error => {
